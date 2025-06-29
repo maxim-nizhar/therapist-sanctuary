@@ -1,0 +1,169 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg-main: #1c2522; /* Deep Green */
+  --bg-card: #2a3834; /* Green-Slate */
+  --text-primary: #e0e8e5; /* Soft Off-White */
+  --text-secondary: #92a19c; /* Muted Grayish-Green */
+  --text-heading: #f0f5f3; /* Bright Off-White */
+  --accent-gold: #d4af7a; /* Muted Brass/Gold */
+  --accent-green: #7a9e91; /* Soft Sage */
+  --accent-red: #d98c8c; /* Muted Red */
+  --border-color: #3f4f4a; /* Subtle Dark Green */
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-display: swap;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    color: var(--text-heading);
+    line-height: 1.2;
+    font-display: swap;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-main);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+
+  /* Custom component styles */
+  .detail-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all 0.3s ease;
+  }
+
+  .patient-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .patient-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateX(-5px) scale(1.02);
+  }
+
+  .patient-card.active {
+    border-left: 4px solid var(--accent-gold);
+    background-color: #31423d;
+  }
+
+  .appointment-card {
+    opacity: 0;
+    transform: translateY(20px);
+    cursor: pointer;
+  }
+
+  .appointment-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(15px) scale(1.02);
+  }
+
+  .appointment-card.active {
+    border-color: var(--accent-gold);
+    background-color: #31423d;
+    transform: translateY(15px) scale(1.03);
+  }
+
+  .countdown-box {
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+  }
+
+  .action-button {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  /* Modal styles */
+  .modal-overlay {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-content {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .modal-overlay.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* SVG Graph styles */
+  .graph-line {
+    stroke-width: 2;
+    stroke: var(--accent-green);
+    fill: none;
+  }
+
+  .graph-dot {
+    r: 4;
+    fill: var(--accent-green);
+    stroke: var(--bg-card);
+    stroke-width: 2;
+  }
+
+  .graph-area {
+    fill: var(--accent-green);
+    opacity: 0.1;
+  }
+}
